@@ -1,0 +1,5 @@
+.pio
+.vscode
+*.log
+*.pyc
+
