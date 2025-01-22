@@ -76,11 +76,13 @@ void init_scr_del_flag(lv_ui *ui)
     ui->screen_start_del = true;
     ui->screen_home_del = true;
     ui->screen_chart_del = true;
+    ui->screen_time_del = true;
+    ui->screen_HA_del = true;
     ui->screen_menu_del = true;
     ui->screen_setting_del = true;
     ui->screen_pwr_del = true;
     ui->screen_wifi_del = true;
-    ui->screen_time_del = true;
+    ui->screen_mqtt_del = true;
 }
 
 void setup_ui(lv_ui *ui)

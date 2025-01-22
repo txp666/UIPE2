@@ -73,7 +73,7 @@ static void screen_home_event_handler (lv_event_t *e)
         case LV_DIR_RIGHT:
         {
             lv_indev_wait_release(lv_indev_get_act());
-            ui_load_scr_animation(&guider_ui, &guider_ui.screen_time, guider_ui.screen_time_del, &guider_ui.screen_home_del, setup_scr_screen_time, LV_SCR_LOAD_ANIM_OVER_RIGHT, 200, 200, false, true);
+            ui_load_scr_animation(&guider_ui, &guider_ui.screen_HA, guider_ui.screen_HA_del, &guider_ui.screen_home_del, setup_scr_screen_HA, LV_SCR_LOAD_ANIM_OVER_RIGHT, 200, 200, false, true);
             break;
         }
         default:
@@ -140,6 +140,108 @@ static void screen_chart_event_handler (lv_event_t *e)
 void events_init_screen_chart (lv_ui *ui)
 {
     lv_obj_add_event_cb(ui->screen_chart, screen_chart_event_handler, LV_EVENT_ALL, ui);
+}
+
+static void screen_time_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_SCREEN_LOAD_START:
+    {
+        screen_time_load_start();
+        break;
+    }
+    case LV_EVENT_SCREEN_UNLOADED:
+    {
+        screen_time_unloaded();
+        break;
+    }
+    case LV_EVENT_GESTURE:
+    {
+        lv_dir_t dir = lv_indev_get_gesture_dir(lv_indev_get_act());
+        switch(dir) {
+        case LV_DIR_LEFT:
+        {
+            lv_indev_wait_release(lv_indev_get_act());
+            ui_load_scr_animation(&guider_ui, &guider_ui.screen_HA, guider_ui.screen_HA_del, &guider_ui.screen_time_del, setup_scr_screen_HA, LV_SCR_LOAD_ANIM_OVER_LEFT, 200, 200, false, true);
+            break;
+        }
+        case LV_DIR_RIGHT:
+        {
+            lv_indev_wait_release(lv_indev_get_act());
+            ui_load_scr_animation(&guider_ui, &guider_ui.screen_chart, guider_ui.screen_chart_del, &guider_ui.screen_time_del, setup_scr_screen_chart, LV_SCR_LOAD_ANIM_OVER_RIGHT, 200, 200, false, true);
+            break;
+        }
+        case LV_DIR_TOP:
+        {
+            lv_indev_wait_release(lv_indev_get_act());
+            ui_load_scr_animation(&guider_ui, &guider_ui.screen_menu, guider_ui.screen_menu_del, &guider_ui.screen_time_del, setup_scr_screen_menu, LV_SCR_LOAD_ANIM_OVER_TOP, 200, 200, false, true);
+            break;
+        }
+        default:
+            break;
+        }
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+void events_init_screen_time (lv_ui *ui)
+{
+    lv_obj_add_event_cb(ui->screen_time, screen_time_event_handler, LV_EVENT_ALL, ui);
+}
+
+static void screen_HA_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_SCREEN_LOAD_START:
+    {
+        screen_ha_load_start();
+        break;
+    }
+    case LV_EVENT_SCREEN_UNLOADED:
+    {
+        screen_ha_unloaded();
+        break;
+    }
+    case LV_EVENT_GESTURE:
+    {
+        lv_dir_t dir = lv_indev_get_gesture_dir(lv_indev_get_act());
+        switch(dir) {
+        case LV_DIR_LEFT:
+        {
+            lv_indev_wait_release(lv_indev_get_act());
+            ui_load_scr_animation(&guider_ui, &guider_ui.screen_home, guider_ui.screen_home_del, &guider_ui.screen_HA_del, setup_scr_screen_home, LV_SCR_LOAD_ANIM_OVER_LEFT, 200, 200, false, true);
+            break;
+        }
+        case LV_DIR_RIGHT:
+        {
+            lv_indev_wait_release(lv_indev_get_act());
+            ui_load_scr_animation(&guider_ui, &guider_ui.screen_time, guider_ui.screen_time_del, &guider_ui.screen_HA_del, setup_scr_screen_time, LV_SCR_LOAD_ANIM_OVER_RIGHT, 200, 200, false, true);
+            break;
+        }
+        case LV_DIR_TOP:
+        {
+            lv_indev_wait_release(lv_indev_get_act());
+            ui_load_scr_animation(&guider_ui, &guider_ui.screen_menu, guider_ui.screen_menu_del, &guider_ui.screen_HA_del, setup_scr_screen_menu, LV_SCR_LOAD_ANIM_OVER_TOP, 200, 200, false, true);
+            break;
+        }
+        default:
+            break;
+        }
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+void events_init_screen_HA (lv_ui *ui)
+{
+    lv_obj_add_event_cb(ui->screen_HA, screen_HA_event_handler, LV_EVENT_ALL, ui);
 }
 
 static void screen_menu_event_handler (lv_event_t *e)
@@ -214,12 +316,27 @@ static void screen_menu_btn_menu_wifi_event_handler (lv_event_t *e)
     }
 }
 
+static void screen_menu_btn_menu_mqtt_event_handler (lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.screen_mqtt, guider_ui.screen_mqtt_del, &guider_ui.screen_menu_del, setup_scr_screen_mqtt, LV_SCR_LOAD_ANIM_FADE_ON, 200, 200, false, true);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
 void events_init_screen_menu (lv_ui *ui)
 {
     lv_obj_add_event_cb(ui->screen_menu, screen_menu_event_handler, LV_EVENT_ALL, ui);
     lv_obj_add_event_cb(ui->screen_menu_btn_menu_setting, screen_menu_btn_menu_setting_event_handler, LV_EVENT_ALL, ui);
     lv_obj_add_event_cb(ui->screen_menu_btn_menu_home, screen_menu_btn_menu_home_event_handler, LV_EVENT_ALL, ui);
     lv_obj_add_event_cb(ui->screen_menu_btn_menu_wifi, screen_menu_btn_menu_wifi_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->screen_menu_btn_menu_mqtt, screen_menu_btn_menu_mqtt_event_handler, LV_EVENT_ALL, ui);
 }
 
 static void screen_setting_event_handler (lv_event_t *e)
@@ -387,45 +504,18 @@ void events_init_screen_wifi (lv_ui *ui)
     lv_obj_add_event_cb(ui->screen_wifi_btn_wifi_return, screen_wifi_btn_wifi_return_event_handler, LV_EVENT_ALL, ui);
 }
 
-static void screen_time_event_handler (lv_event_t *e)
+static void screen_mqtt_event_handler (lv_event_t *e)
 {
     lv_event_code_t code = lv_event_get_code(e);
     switch (code) {
     case LV_EVENT_SCREEN_LOAD_START:
     {
-        screen_time_load_start();
+        screen_mqtt_load_start();
         break;
     }
     case LV_EVENT_SCREEN_UNLOADED:
     {
-        screen_time_unloaded();
-        break;
-    }
-    case LV_EVENT_GESTURE:
-    {
-        lv_dir_t dir = lv_indev_get_gesture_dir(lv_indev_get_act());
-        switch(dir) {
-        case LV_DIR_LEFT:
-        {
-            lv_indev_wait_release(lv_indev_get_act());
-            ui_load_scr_animation(&guider_ui, &guider_ui.screen_home, guider_ui.screen_home_del, &guider_ui.screen_time_del, setup_scr_screen_home, LV_SCR_LOAD_ANIM_OVER_LEFT, 200, 200, false, true);
-            break;
-        }
-        case LV_DIR_RIGHT:
-        {
-            lv_indev_wait_release(lv_indev_get_act());
-            ui_load_scr_animation(&guider_ui, &guider_ui.screen_chart, guider_ui.screen_chart_del, &guider_ui.screen_time_del, setup_scr_screen_chart, LV_SCR_LOAD_ANIM_OVER_RIGHT, 200, 200, false, true);
-            break;
-        }
-        case LV_DIR_TOP:
-        {
-            lv_indev_wait_release(lv_indev_get_act());
-            ui_load_scr_animation(&guider_ui, &guider_ui.screen_menu, guider_ui.screen_menu_del, &guider_ui.screen_time_del, setup_scr_screen_menu, LV_SCR_LOAD_ANIM_OVER_TOP, 200, 200, false, true);
-            break;
-        }
-        default:
-            break;
-        }
+        screen_mqtt_unloaded();
         break;
     }
     default:
@@ -433,9 +523,24 @@ static void screen_time_event_handler (lv_event_t *e)
     }
 }
 
-void events_init_screen_time (lv_ui *ui)
+static void screen_mqtt_btn_mqtt_return_event_handler (lv_event_t *e)
 {
-    lv_obj_add_event_cb(ui->screen_time, screen_time_event_handler, LV_EVENT_ALL, ui);
+    lv_event_code_t code = lv_event_get_code(e);
+    switch (code) {
+    case LV_EVENT_CLICKED:
+    {
+        ui_load_scr_animation(&guider_ui, &guider_ui.screen_menu, guider_ui.screen_menu_del, &guider_ui.screen_mqtt_del, setup_scr_screen_menu, LV_SCR_LOAD_ANIM_FADE_ON, 200, 200, false, true);
+        break;
+    }
+    default:
+        break;
+    }
+}
+
+void events_init_screen_mqtt (lv_ui *ui)
+{
+    lv_obj_add_event_cb(ui->screen_mqtt, screen_mqtt_event_handler, LV_EVENT_ALL, ui);
+    lv_obj_add_event_cb(ui->screen_mqtt_btn_mqtt_return, screen_mqtt_btn_mqtt_return_event_handler, LV_EVENT_ALL, ui);
 }
 
 

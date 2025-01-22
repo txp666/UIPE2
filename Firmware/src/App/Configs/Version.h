@@ -3,7 +3,7 @@
 
 /* Firmware Version */
 #define VERSION_FIRMWARE_NAME "UIPE2"
-#define VERSION_SOFTWARE 1.0
+#define VERSION_SOFTWARE 1.1
 #define VERSION_HARDWARE 1.0
 #define VERSION_AUTHOR_NAME "txp"
 

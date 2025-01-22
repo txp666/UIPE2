@@ -7,6 +7,7 @@
 #define lvglTaskPri configMAX_PRIORITIES - 1
 #define IICtaskPri configMAX_PRIORITIES - 2
 #define TCPTaskPri configMAX_PRIORITIES - 3
+#define MQTTTaskPri configMAX_PRIORITIES - 3
 
 /*=========================
    Hardware Configuration

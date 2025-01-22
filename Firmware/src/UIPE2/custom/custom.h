@@ -60,6 +60,24 @@ extern "C"
     void screen_time_load_start();
     void screen_time_unloaded();
     char *getDate();
+
+    void screen_ha_load_start();
+    void screen_ha_unloaded();
+
+    /* mqtt */
+    void screen_mqtt_load_start();
+    void screen_mqtt_unloaded();
+    void startMqtt();
+    void stopMqtt();
+    void setMqttServer(const char *server);
+    bool getMqttConnected();
+    const char *getMqttServer();
+    int getMqttPort();
+    void setMqttPort(int port);
+    void turn_ligh(bool on);
+    void turn_fan(bool on);
+    float getHATemperature();
+
 #ifdef __cplusplus
 }
 #endif

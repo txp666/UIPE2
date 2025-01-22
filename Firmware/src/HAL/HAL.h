@@ -58,6 +58,11 @@ namespace HAL
     void wifiScan();
     void powerONtoReadWiFiInfo();
 
+    /* MQTT */
+    void getPram(char *buffer, size_t bufferSize);
+    void sendMQTT();
+    void MQTTTask(void *parameter);
+
 }
 uint8_t getBacklight();
 

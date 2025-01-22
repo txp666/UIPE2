@@ -46,6 +46,31 @@ typedef struct
 	lv_obj_t *screen_chart_label_screen_chart_p;
 	lv_obj_t *screen_chart_btn_screen_chart_play;
 	lv_obj_t *screen_chart_btn_screen_chart_play_label;
+	lv_obj_t *screen_time;
+	bool screen_time_del;
+	lv_obj_t *g_kb_screen_time;
+	lv_obj_t *screen_time_cont_1;
+	lv_obj_t *screen_time_line_1;
+	lv_obj_t *screen_time_label_time_hour;
+	lv_obj_t *screen_time_label_time_min;
+	lv_obj_t *screen_time_label_time_date;
+	lv_obj_t *screen_time_animimg_1;
+	lv_obj_t *screen_HA;
+	bool screen_HA_del;
+	lv_obj_t *g_kb_screen_HA;
+	lv_obj_t *screen_HA_cont_fan;
+	lv_obj_t *screen_HA_sw_fan;
+	lv_obj_t *screen_HA_animimg_fan;
+	lv_obj_t *screen_HA_label_fan;
+	lv_obj_t *screen_HA_cont_light;
+	lv_obj_t *screen_HA_label_light;
+	lv_obj_t *screen_HA_sw_light;
+	lv_obj_t *screen_HA_img_light_on;
+	lv_obj_t *screen_HA_img_light_off;
+	lv_obj_t *screen_HA_cont_temp;
+	lv_obj_t *screen_HA_arc_temp;
+	lv_obj_t *screen_HA_label_temp2;
+	lv_obj_t *screen_HA_label_temp;
 	lv_obj_t *screen_menu;
 	bool screen_menu_del;
 	lv_obj_t *g_kb_screen_menu;
@@ -55,6 +80,8 @@ typedef struct
 	lv_obj_t *screen_menu_btn_menu_home_label;
 	lv_obj_t *screen_menu_btn_menu_wifi;
 	lv_obj_t *screen_menu_btn_menu_wifi_label;
+	lv_obj_t *screen_menu_btn_menu_mqtt;
+	lv_obj_t *screen_menu_btn_menu_mqtt_label;
 	lv_obj_t *screen_setting;
 	bool screen_setting_del;
 	lv_obj_t *g_kb_screen_setting;
@@ -92,15 +119,19 @@ typedef struct
 	lv_obj_t *screen_wifi_sw_wifi_swich;
 	lv_obj_t *screen_wifi_label_wifi_name;
 	lv_obj_t *screen_wifi_label_wifi_ip;
-	lv_obj_t *screen_time;
-	bool screen_time_del;
-	lv_obj_t *g_kb_screen_time;
-	lv_obj_t *screen_time_cont_1;
-	lv_obj_t *screen_time_line_1;
-	lv_obj_t *screen_time_label_time_hour;
-	lv_obj_t *screen_time_label_time_min;
-	lv_obj_t *screen_time_label_time_date;
-	lv_obj_t *screen_time_animimg_1;
+	lv_obj_t *screen_mqtt;
+	bool screen_mqtt_del;
+	lv_obj_t *g_kb_screen_mqtt;
+	lv_obj_t *screen_mqtt_btn_mqtt_return;
+	lv_obj_t *screen_mqtt_btn_mqtt_return_label;
+	lv_obj_t *screen_mqtt_ta_mqtt_ip;
+	lv_obj_t *screen_mqtt_label_mqtt_info;
+	lv_obj_t *screen_mqtt_ta_mqtt_port;
+	lv_obj_t *screen_mqtt_btn_mqtt_connect;
+	lv_obj_t *screen_mqtt_btn_mqtt_connect_label;
+	lv_obj_t *screen_mqtt_label_1;
+	lv_obj_t *screen_mqtt_btn_mqtt_disconnect;
+	lv_obj_t *screen_mqtt_btn_mqtt_disconnect_label;
 }lv_ui;
 
 typedef void (*ui_setup_scr_t)(lv_ui * ui);
@@ -126,11 +157,13 @@ extern lv_ui guider_ui;
 void setup_scr_screen_start(lv_ui *ui);
 void setup_scr_screen_home(lv_ui *ui);
 void setup_scr_screen_chart(lv_ui *ui);
+void setup_scr_screen_time(lv_ui *ui);
+void setup_scr_screen_HA(lv_ui *ui);
 void setup_scr_screen_menu(lv_ui *ui);
 void setup_scr_screen_setting(lv_ui *ui);
 void setup_scr_screen_pwr(lv_ui *ui);
 void setup_scr_screen_wifi(lv_ui *ui);
-void setup_scr_screen_time(lv_ui *ui);
+void setup_scr_screen_mqtt(lv_ui *ui);
 #include "extra/widgets/animimg/lv_animimg.h"
 LV_IMG_DECLARE(screen_time_animimg_101);
 LV_IMG_DECLARE(screen_time_animimg_102);
@@ -151,6 +184,11 @@ LV_IMG_DECLARE(screen_time_animimg_116);
 LV_IMG_DECLARE(screen_time_animimg_117);
 LV_IMG_DECLARE(screen_time_animimg_118);
 LV_IMG_DECLARE(screen_time_animimg_119);
+#include "extra/widgets/animimg/lv_animimg.h"
+LV_IMG_DECLARE(screen_HA_animimg_fanfan1);
+LV_IMG_DECLARE(screen_HA_animimg_fanfan2);
+LV_IMG_DECLARE(_light2_alpha_64x64);
+LV_IMG_DECLARE(_light1_alpha_64x64);
 
 LV_FONT_DECLARE(lv_font_SourceHanMonoNormal_50)
 LV_FONT_DECLARE(lv_font_SourceHanSerifSC_Regular_11)
@@ -162,15 +200,17 @@ LV_FONT_DECLARE(lv_font_montserratMedium_12)
 LV_FONT_DECLARE(lv_font_Acme_Regular_13)
 LV_FONT_DECLARE(lv_font_SourceHanMonoNormal_15)
 LV_FONT_DECLARE(lv_font_montserratMedium_15)
-LV_FONT_DECLARE(lv_font_montserratMedium_50)
+LV_FONT_DECLARE(lv_font_SourceHanMonoNormal_80)
 LV_FONT_DECLARE(lv_font_SourceHanSerifSC_Regular_16)
+LV_FONT_DECLARE(lv_font_SourceHanSerifSC_Regular_20)
+LV_FONT_DECLARE(lv_font_montserratMedium_50)
 LV_FONT_DECLARE(lv_font_montserratMedium_37)
 LV_FONT_DECLARE(lv_font_montserratMedium_35)
 LV_FONT_DECLARE(lv_font_montserratMedium_20)
 LV_FONT_DECLARE(lv_font_montserratMedium_14)
 LV_FONT_DECLARE(lv_font_SourceHanSerifSC_Regular_18)
 LV_FONT_DECLARE(lv_font_montserratMedium_30)
-LV_FONT_DECLARE(lv_font_SourceHanMonoNormal_80)
+LV_FONT_DECLARE(lv_font_montserratMedium_18)
 
 
 #ifdef __cplusplus

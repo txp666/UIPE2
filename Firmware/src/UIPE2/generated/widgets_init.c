@@ -75,20 +75,6 @@ void clock_count(int *hour, int *min, int *sec)
 }
 #endif
 
-void lv_screen_pwr_spinbox_pwr_u_increment_event_cb(lv_event_t * event)
-{
-    lv_event_code_t code = lv_event_get_code(event);
-    if(code == LV_EVENT_SHORT_CLICKED || code == LV_EVENT_LONG_PRESSED_REPEAT) {
-        lv_spinbox_increment(guider_ui.screen_pwr_spinbox_pwr_u);
-    }
-}
-void lv_screen_pwr_spinbox_pwr_u_decrement_event_cb(lv_event_t * event)
-{
-    lv_event_code_t code = lv_event_get_code(event);
-    if(code == LV_EVENT_SHORT_CLICKED || code == LV_EVENT_LONG_PRESSED_REPEAT) {
-        lv_spinbox_decrement(guider_ui.screen_pwr_spinbox_pwr_u);
-    }
-}
 
 const lv_img_dsc_t * screen_time_animimg_1_imgs[19] = {
     &screen_time_animimg_101,
@@ -111,3 +97,22 @@ const lv_img_dsc_t * screen_time_animimg_1_imgs[19] = {
     &screen_time_animimg_118,
     &screen_time_animimg_119,
 };
+const lv_img_dsc_t * screen_HA_animimg_fan_imgs[2] = {
+    &screen_HA_animimg_fanfan1,
+    &screen_HA_animimg_fanfan2,
+};
+void lv_screen_pwr_spinbox_pwr_u_increment_event_cb(lv_event_t * event)
+{
+    lv_event_code_t code = lv_event_get_code(event);
+    if(code == LV_EVENT_SHORT_CLICKED || code == LV_EVENT_LONG_PRESSED_REPEAT) {
+        lv_spinbox_increment(guider_ui.screen_pwr_spinbox_pwr_u);
+    }
+}
+void lv_screen_pwr_spinbox_pwr_u_decrement_event_cb(lv_event_t * event)
+{
+    lv_event_code_t code = lv_event_get_code(event);
+    if(code == LV_EVENT_SHORT_CLICKED || code == LV_EVENT_LONG_PRESSED_REPEAT) {
+        lv_spinbox_decrement(guider_ui.screen_pwr_spinbox_pwr_u);
+    }
+}
+

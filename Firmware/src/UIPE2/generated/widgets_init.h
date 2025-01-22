@@ -22,11 +22,12 @@ __attribute__((unused)) void ta_event_cb(lv_event_t *e);
 void clock_count(int *hour, int *min, int *sec);
 #endif
 
-extern lv_obj_t * screen_pwr_spinbox_pwr_u;
+
+extern const lv_img_dsc_t * screen_time_animimg_1_imgs[19];
+extern const lv_img_dsc_t * screen_HA_animimg_fan_imgs[2];extern lv_obj_t * screen_pwr_spinbox_pwr_u;
 void lv_screen_pwr_spinbox_pwr_u_increment_event_cb(lv_event_t * event);
 void lv_screen_pwr_spinbox_pwr_u_decrement_event_cb(lv_event_t * event);
 
-extern const lv_img_dsc_t * screen_time_animimg_1_imgs[19];
 
 #ifdef __cplusplus
 }
