@@ -57,6 +57,7 @@ static void ha_timer_cb()
 
 void screen_ha_load_start()
 {
+    lv_obj_clear_flag(guider_ui.screen_HA_arc_temp, LV_OBJ_FLAG_CLICKABLE);
     ha_timer = lv_timer_create(ha_timer_cb, 500, NULL);
     lv_obj_add_event_cb(guider_ui.screen_HA_sw_fan, fan_event_handler, LV_EVENT_VALUE_CHANGED, NULL);
     lv_obj_add_event_cb(guider_ui.screen_HA_sw_light, light_event_handler, LV_EVENT_VALUE_CHANGED, NULL);
