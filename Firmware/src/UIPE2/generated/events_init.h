@@ -28,6 +28,7 @@ void events_init_screen_setting(lv_ui *ui);
 void events_init_screen_pwr(lv_ui *ui);
 void events_init_screen_wifi(lv_ui *ui);
 void events_init_screen_mqtt(lv_ui *ui);
+void events_init_screen_cpu(lv_ui *ui);
 
 #ifdef __cplusplus
 }

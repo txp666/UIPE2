@@ -132,6 +132,19 @@ typedef struct
 	lv_obj_t *screen_mqtt_label_1;
 	lv_obj_t *screen_mqtt_btn_mqtt_disconnect;
 	lv_obj_t *screen_mqtt_btn_mqtt_disconnect_label;
+	lv_obj_t *screen_cpu;
+	bool screen_cpu_del;
+	lv_obj_t *g_kb_screen_cpu;
+	lv_obj_t *screen_cpu_cont_cpu;
+	lv_obj_t *screen_cpu_label_cpu2;
+	lv_obj_t *screen_cpu_label_cpu;
+	lv_obj_t *screen_cpu_arc_cpu;
+	lv_obj_t *screen_cpu_cont_mem;
+	lv_obj_t *screen_cpu_label_mem3;
+	lv_obj_t *screen_cpu_label_mem;
+	lv_obj_t *screen_cpu_arc_mem;
+	lv_obj_t *screen_cpu_label_mem2;
+	lv_obj_t *screen_cpu_label_time;
 }lv_ui;
 
 typedef void (*ui_setup_scr_t)(lv_ui * ui);
@@ -164,6 +177,7 @@ void setup_scr_screen_setting(lv_ui *ui);
 void setup_scr_screen_pwr(lv_ui *ui);
 void setup_scr_screen_wifi(lv_ui *ui);
 void setup_scr_screen_mqtt(lv_ui *ui);
+void setup_scr_screen_cpu(lv_ui *ui);
 #include "extra/widgets/animimg/lv_animimg.h"
 LV_IMG_DECLARE(screen_time_animimg_101);
 LV_IMG_DECLARE(screen_time_animimg_102);

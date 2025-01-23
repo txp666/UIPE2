@@ -83,6 +83,7 @@ void init_scr_del_flag(lv_ui *ui)
     ui->screen_pwr_del = true;
     ui->screen_wifi_del = true;
     ui->screen_mqtt_del = true;
+    ui->screen_cpu_del = true;
 }
 
 void setup_ui(lv_ui *ui)

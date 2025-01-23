@@ -60,6 +60,8 @@ extern "C"
     void screen_time_load_start();
     void screen_time_unloaded();
     char *getDate();
+    char *getDateTime();
+    void getCpuMem(float *cpu, float *mem, float *mem_total, float *mem_used);
 
     void screen_ha_load_start();
     void screen_ha_unloaded();
@@ -77,6 +79,9 @@ extern "C"
     void turn_ligh(bool on);
     void turn_fan(bool on);
     float getHATemperature();
+
+    void screen_cpu_load_start();
+    void screen_cpu_unloaded();
 
 #ifdef __cplusplus
 }

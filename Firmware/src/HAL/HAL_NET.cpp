@@ -17,9 +17,9 @@ const int daylightOffset_sec = 0;       // 无夏令时
 
 // ========== ESP32Time 对象 ==========
 ESP32Time rtc;
-#define MAX_NETWORKS 10
 
 // ========== wifi 配置 ==========
+#define MAX_NETWORKS 10
 static char ssid[33];     // 最大 SSID 长度为 32 个字符
 static char password[65]; // 最大密码长度为 64 个字符
 static char APssid[33];
@@ -36,6 +36,8 @@ TaskHandle_t TCPTaskHandle;
 WiFiServer tcpServer(81);
 WiFiClient client;
 WiFiNetwork networks[MAX_NETWORKS];
+
+static float cpu_usage, mem_usage, mem_total, mem_used = 0;
 
 // 函数声明
 bool connectToWiFi();
@@ -254,8 +256,25 @@ void handleClientData()
             DeserializationError error = deserializeJson(docTCPRec, data);
             if (!error)
             {
-                if (docTCPRec.containsKey("ZC"))
+                if (docTCPRec.containsKey("cpu_usage"))
                 {
+                    cpu_usage = docTCPRec["cpu_usage"].as<float>();
+                    Serial.printf("CPU 使用率: %.2f%%\n", cpu_usage);
+                }
+                if (docTCPRec.containsKey("mem_percent"))
+                {
+                    mem_usage = docTCPRec["mem_percent"].as<float>();
+                    Serial.printf("内存使用率: %.2f%%\n", mem_usage);
+                }
+                if (docTCPRec.containsKey("mem_total"))
+                {
+                    mem_total = docTCPRec["mem_total"].as<float>() / 1000000000;
+                    Serial.printf("总内存: %.2f\n", mem_total);
+                }
+                if (docTCPRec.containsKey("mem_used"))
+                {
+                    mem_used = docTCPRec["mem_used"].as<float>() / 1000000000;
+                    Serial.printf("已用内存: %.2f\n", mem_used);
                 }
             }
             else
@@ -593,4 +612,21 @@ char *getDate()
              weekDays[weekDay].c_str());
 
     return buf;
+}
+
+char *getDateTime()
+{
+    static char buf[64];
+    std::string date = rtc.getDate(false).c_str(); // 获取日期字符串
+    std::string time = rtc.getTime("%H:%M:%S").c_str();
+    snprintf(buf, sizeof(buf), "%s %s", date.c_str(), time.c_str());
+    return buf;
+}
+
+void getCpuMem(float *cpu, float *mem, float *total, float *used)
+{
+    *cpu = cpu_usage;
+    *mem = mem_usage;
+    *total = mem_total;
+    *used = mem_used;
 }

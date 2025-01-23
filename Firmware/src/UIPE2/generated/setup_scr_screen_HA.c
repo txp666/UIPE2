@@ -59,11 +59,11 @@ void setup_scr_screen_HA(lv_ui *ui)
     lv_obj_set_size(ui->screen_HA_sw_fan, 61, 30);
 
     //Write style for screen_HA_sw_fan, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_border_width(ui->screen_HA_sw_fan, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_radius(ui->screen_HA_sw_fan, 10, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui->screen_HA_sw_fan, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_color(ui->screen_HA_sw_fan, lv_color_hex(0xe6e2e6), LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_grad_dir(ui->screen_HA_sw_fan, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_border_width(ui->screen_HA_sw_fan, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->screen_HA_sw_fan, 10, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_shadow_width(ui->screen_HA_sw_fan, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //Write style for screen_HA_sw_fan, Part: LV_PART_INDICATOR, State: LV_STATE_CHECKED.
@@ -96,8 +96,8 @@ void setup_scr_screen_HA(lv_ui *ui)
     lv_obj_set_size(ui->screen_HA_label_fan, 55, 23);
 
     //Write style for screen_HA_label_fan, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_radius(ui->screen_HA_label_fan, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_border_width(ui->screen_HA_label_fan, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->screen_HA_label_fan, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_color(ui->screen_HA_label_fan, lv_color_hex(0x000000), LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui->screen_HA_label_fan, &lv_font_SourceHanSerifSC_Regular_16, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui->screen_HA_label_fan, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
@@ -192,10 +192,10 @@ void setup_scr_screen_HA(lv_ui *ui)
     lv_obj_add_flag(ui->screen_HA_img_light_on, LV_OBJ_FLAG_HIDDEN);
 
     //Write style for screen_HA_img_light_on, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_radius(ui->screen_HA_img_light_on, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_clip_corner(ui->screen_HA_img_light_on, true, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_img_recolor_opa(ui->screen_HA_img_light_on, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_img_opa(ui->screen_HA_img_light_on, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->screen_HA_img_light_on, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_clip_corner(ui->screen_HA_img_light_on, true, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //Write codes screen_HA_img_light_off
     ui->screen_HA_img_light_off = lv_img_create(ui->screen_HA_cont_light);
@@ -207,10 +207,10 @@ void setup_scr_screen_HA(lv_ui *ui)
     lv_obj_set_size(ui->screen_HA_img_light_off, 64, 64);
 
     //Write style for screen_HA_img_light_off, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_radius(ui->screen_HA_img_light_off, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_set_style_clip_corner(ui->screen_HA_img_light_off, true, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_img_recolor_opa(ui->screen_HA_img_light_off, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_img_opa(ui->screen_HA_img_light_off, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->screen_HA_img_light_off, 0, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_clip_corner(ui->screen_HA_img_light_off, true, LV_PART_MAIN|LV_STATE_DEFAULT);
 
     //Write codes screen_HA_cont_temp
     ui->screen_HA_cont_temp = lv_obj_create(ui->screen_HA);
@@ -219,11 +219,11 @@ void setup_scr_screen_HA(lv_ui *ui)
     lv_obj_set_scrollbar_mode(ui->screen_HA_cont_temp, LV_SCROLLBAR_MODE_OFF);
 
     //Write style for screen_HA_cont_temp, Part: LV_PART_MAIN, State: LV_STATE_DEFAULT.
-    lv_obj_set_style_radius(ui->screen_HA_cont_temp, 10, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_border_width(ui->screen_HA_cont_temp, 2, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_border_opa(ui->screen_HA_cont_temp, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_border_color(ui->screen_HA_cont_temp, lv_color_hex(0x2195f6), LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_border_side(ui->screen_HA_cont_temp, LV_BORDER_SIDE_FULL, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_set_style_radius(ui->screen_HA_cont_temp, 10, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui->screen_HA_cont_temp, 255, LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_color(ui->screen_HA_cont_temp, lv_color_hex(0xffffff), LV_PART_MAIN|LV_STATE_DEFAULT);
     lv_obj_set_style_bg_grad_dir(ui->screen_HA_cont_temp, LV_GRAD_DIR_NONE, LV_PART_MAIN|LV_STATE_DEFAULT);
